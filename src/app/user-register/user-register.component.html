@@ -1,0 +1,93 @@
+<div *ngIf="mensagem_sucesso" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+  <strong>Sucesso!</strong> {{mensagem_sucesso}}
+  <button type="button" class="btn-close" aria-label="Close" (click)="limparMensagem()"></button>
+</div>
+
+<div *ngIf="mensagem_erro" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+  <strong>Erro!</strong> {{mensagem_erro}}
+  <button type="button" class="btn-close" aria-label="Close" (click)="limparMensagem()"></button>
+</div>
+
+
+<div class="mt-2">
+
+    <div class="card">
+      <div class="card-body">
+        <h5>Cadastro de conta de Usuário</h5>
+        <p>Informe os seus dados para criar uma conta</p>
+        <hr />
+  
+        <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+  
+          <div class="row mb-3">
+  
+            <div class="col-md-4">
+              <label>Nome do usário:</label>
+              <input type="text" class="form-control" placeholder="digite aqui" 
+                formControlName="nome" />
+  
+              <div class="text-danger" *ngIf="form.nome.touched && form.nome.invalid">
+                <div *ngIf="form.nome.errors.required">
+                  Por Favor, informe o nome do usuário.
+                </div>
+              </div>
+  
+            </div>
+  
+            <div class="col-md-4">
+              <label>Email do usuário:</label>
+              <input type="text" class="form-control" placeholder="digite aqui" 
+              formControlName="email" />
+  
+              <div class="text-danger" *ngIf="form.email.touched && form.email.invalid">
+                <div *ngIf="form.email.errors.required">
+                  Por favor, informe o email do usuário.
+                </div>
+                <div *ngIf="form.email.errors.email">
+                  Por favor, informe um endereço de email válido.
+                </div>
+              </div>
+  
+            </div>
+  
+            <div class="col-md-4">
+              <label>Senha do usário:</label>
+              <input type="password" class="form-control" placeholder="digite aqui" 
+              formControlName="senha"/>
+  
+              <div class="text-danger" *ngIf="form.senha.touched && form.senha.invalid">
+                <div *ngIf="form.senha.errors.required">
+                  Por favor, informe a senha do usuário.
+                </div>
+                <div *ngIf="form.senha.errors.minlength">
+                  Por favor, informe no mínimo 8 caracteres.
+                </div>
+                <div *ngIf="form.senha.errors.maxlength">
+                  Por favor, infome no máximo 20 caracteres.
+                </div>
+              </div>
+  
+            </div>
+  
+          </div>
+  
+          <div class="row mb-3">
+            <div class="col-d-12">
+
+              <input type="submit" value="Realizar Cadastro" class="btn btn-success" 
+              [disabled]="!formRegister.valid"/>
+
+              &nbsp;
+
+              <button class="btn btn-light ml-2" [routerLink]="['/']">
+                Já possui conta? <strong>Acesse aqui!</strong>
+              </button>
+
+            </div>
+          </div>
+  
+        </form>
+      </div>
+    </div>
+  
+  </div>
